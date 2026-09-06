@@ -1,6 +1,0 @@
-[
-  {"id":"brazil","name":"Brazil","color":"#2D7A3E","logo":"/assets/teams/brazil.svg","flag":"/assets/flags/brazil.svg"},
-  {"id":"argentina","name":"Argentina","color":"#75AADB","logo":"/assets/teams/argentina.svg","flag":"/assets/flags/argentina.svg"},
-  {"id":"france","name":"France","color":"#1D4ED8","logo":"/assets/teams/france.svg","flag":"/assets/flags/france.svg"},
-  {"id":"portugal","name":"Portugal","color":"#C8102E","logo":"/assets/teams/portugal.svg","flag":"/assets/flags/portugal.svg"}
-]
