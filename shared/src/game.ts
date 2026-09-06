@@ -1,4 +1,5 @@
 import type { Card as CardTypeDef, CardType, GameConfig, PlayerAsset, TeamId } from './index.js';
+export type { GameConfig, PlayerAsset } from './index.js';
 export type { Card as CardTypeDef } from './index.js';
 export type Card = CardTypeDef;
 
