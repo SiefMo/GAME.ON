@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - run: npm ci
+      - run: npm install
       - run: npm run build -w shared
       - run: npm run build -w client
       - uses: actions/upload-pages-artifact@v3
