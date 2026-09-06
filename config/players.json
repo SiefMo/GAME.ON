@@ -1,0 +1,362 @@
+[
+  {
+    "id": "brazil-retired-0",
+    "name": "Ronaldo Nazário",
+    "teamId": "brazil",
+    "number": 0,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": true
+  },
+  {
+    "id": "brazil-player-1",
+    "name": "Brazil Player 1",
+    "teamId": "brazil",
+    "number": 1,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": true,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-2",
+    "name": "Brazil Player 2",
+    "teamId": "brazil",
+    "number": 2,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-3",
+    "name": "Brazil Player 3",
+    "teamId": "brazil",
+    "number": 3,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-4",
+    "name": "Brazil Player 4",
+    "teamId": "brazil",
+    "number": 4,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-5",
+    "name": "Brazil Player 5",
+    "teamId": "brazil",
+    "number": 5,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-6",
+    "name": "Brazil Player 6",
+    "teamId": "brazil",
+    "number": 6,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-7",
+    "name": "Brazil Player 7",
+    "teamId": "brazil",
+    "number": 7,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-8",
+    "name": "Brazil Player 8",
+    "teamId": "brazil",
+    "number": 8,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "brazil-player-9",
+    "name": "Brazil Player 9",
+    "teamId": "brazil",
+    "number": 9,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-retired-0",
+    "name": "Retired Player A",
+    "teamId": "argentina",
+    "number": 0,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": true
+  },
+  {
+    "id": "argentina-player-1",
+    "name": "Argentina Player 1",
+    "teamId": "argentina",
+    "number": 1,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": true,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-2",
+    "name": "Argentina Player 2",
+    "teamId": "argentina",
+    "number": 2,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-3",
+    "name": "Argentina Player 3",
+    "teamId": "argentina",
+    "number": 3,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-4",
+    "name": "Argentina Player 4",
+    "teamId": "argentina",
+    "number": 4,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-5",
+    "name": "Argentina Player 5",
+    "teamId": "argentina",
+    "number": 5,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-6",
+    "name": "Argentina Player 6",
+    "teamId": "argentina",
+    "number": 6,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-7",
+    "name": "Argentina Player 7",
+    "teamId": "argentina",
+    "number": 7,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-8",
+    "name": "Argentina Player 8",
+    "teamId": "argentina",
+    "number": 8,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "argentina-player-9",
+    "name": "Argentina Player 9",
+    "teamId": "argentina",
+    "number": 9,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-retired-0",
+    "name": "Retired Player F",
+    "teamId": "france",
+    "number": 0,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": true
+  },
+  {
+    "id": "france-player-1",
+    "name": "France Player 1",
+    "teamId": "france",
+    "number": 1,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": true,
+    "retired": false
+  },
+  {
+    "id": "france-player-2",
+    "name": "France Player 2",
+    "teamId": "france",
+    "number": 2,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-3",
+    "name": "France Player 3",
+    "teamId": "france",
+    "number": 3,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-4",
+    "name": "France Player 4",
+    "teamId": "france",
+    "number": 4,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-5",
+    "name": "France Player 5",
+    "teamId": "france",
+    "number": 5,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-6",
+    "name": "France Player 6",
+    "teamId": "france",
+    "number": 6,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-7",
+    "name": "France Player 7",
+    "teamId": "france",
+    "number": 7,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-8",
+    "name": "France Player 8",
+    "teamId": "france",
+    "number": 8,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "france-player-9",
+    "name": "France Player 9",
+    "teamId": "france",
+    "number": 9,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-retired-0",
+    "name": "Retired Player P",
+    "teamId": "portugal",
+    "number": 0,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": true
+  },
+  {
+    "id": "portugal-player-1",
+    "name": "Portugal Player 1",
+    "teamId": "portugal",
+    "number": 1,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": true,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-2",
+    "name": "Portugal Player 2",
+    "teamId": "portugal",
+    "number": 2,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-3",
+    "name": "Portugal Player 3",
+    "teamId": "portugal",
+    "number": 3,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-4",
+    "name": "Portugal Player 4",
+    "teamId": "portugal",
+    "number": 4,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-5",
+    "name": "Portugal Player 5",
+    "teamId": "portugal",
+    "number": 5,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-6",
+    "name": "Portugal Player 6",
+    "teamId": "portugal",
+    "number": 6,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-7",
+    "name": "Portugal Player 7",
+    "teamId": "portugal",
+    "number": 7,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-8",
+    "name": "Portugal Player 8",
+    "teamId": "portugal",
+    "number": 8,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  },
+  {
+    "id": "portugal-player-9",
+    "name": "Portugal Player 9",
+    "teamId": "portugal",
+    "number": 9,
+    "image": "/assets/players/placeholder.svg",
+    "goalkeeper": false,
+    "retired": false
+  }
+]

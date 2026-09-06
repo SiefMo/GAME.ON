@@ -1,0 +1,26 @@
+{
+  "name": "game-on-football-card-battle",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w shared && npm run build -w server && npm run build -w client",
+    "test": "npm run test -w shared && npm run test -w server",
+    "typecheck": "npm run typecheck -w shared && npm run typecheck -w server && npm run typecheck -w client",
+    "lint": "npm run lint -w shared && npm run lint -w server && npm run lint -w client",
+    "e2e": "playwright test",
+    "e2e:ui": "playwright test --ui",
+    "qa:static": "node scripts/qa-static.mjs",
+    "verify": "npm run qa:static && npm run typecheck && npm test && npm run build",
+    "check:json": "node -e \"const fs=require('fs'); for(const f of ['config/game.json','config/teams.json','config/players.json']) JSON.parse(fs.readFileSync(f,'utf8')); console.log('JSON OK')\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "@playwright/test": "^1.52.0"
+  }
+}
