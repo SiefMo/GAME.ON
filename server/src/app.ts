@@ -1,5 +1,7 @@
 import express from 'express';
 import crypto from 'node:crypto';
+import path from 'node:path';
+import fs from 'node:fs';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
@@ -25,20 +27,26 @@ export function createApp(db: Database.Database) {
     res.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');
     next();
   });
-  app.use(cors({origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173', credentials:true}));
+  const clientOrigin = process.env.CLIENT_ORIGIN || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5173');
+  if (clientOrigin) app.use(cors({origin: clientOrigin, credentials:true}));
   app.use(express.json({limit:'32kb'}));
   app.use(cookieParser());
-  const allowedOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
+  const allowedOrigin = process.env.CLIENT_ORIGIN || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5173');
   app.use((req,res,next) => {
     if (!['POST','PUT','PATCH','DELETE'].includes(req.method)) return next();
     const origin = req.get('origin');
-    if (origin && origin !== allowedOrigin) return res.status(403).json({error:'Origin not allowed'});
+    if (origin && allowedOrigin && origin !== allowedOrigin) return res.status(403).json({error:'Origin not allowed'});
     next();
   });
   const authLimiter = rateLimit({windowMs:15*60*1000,max:20,standardHeaders:true,legacyHeaders:false,message:{error:'Too many authentication attempts. Try again later.'}});
 
   app.get('/health', (_req,res) => res.json({ok:true,service:'game-on-server',timestamp:new Date().toISOString()} satisfies HealthResponse));
   app.get('/ready', (_req,res) => { try { db.prepare('SELECT 1').get(); return res.json({ok:true,ready:true}); } catch { return res.status(503).json({ok:false,ready:false}); } });
+
+  const clientDist = path.resolve(process.cwd(), 'client/dist');
+  if (fs.existsSync(clientDist)) {
+    app.use(express.static(clientDist, { index: 'index.html', maxAge: process.env.NODE_ENV === 'production' ? '1h' : 0 }));
+  }
 
   app.get('/api/admin/dashboard', authMiddleware(db), adminMiddleware(db), (_req,res) => res.json(adminDashboard(db)));
   app.get('/api/admin/users', authMiddleware(db), adminMiddleware(db), (req,res) => {
@@ -176,5 +184,13 @@ export function createApp(db: Database.Database) {
     if(!parsed.success) return res.status(400).json({error:'Invalid settings'});
     res.json({settings:updateSettings(db,currentUser(req).id,parsed.data)});
   });
+
+  if (fs.existsSync(path.join(clientDist, 'index.html'))) {
+    app.get('*', (req,res,next) => {
+      if (req.path.startsWith('/api/') || req.path.startsWith('/socket.io/') || req.path === '/health' || req.path === '/ready') return next();
+      res.sendFile(path.join(clientDist, 'index.html'));
+    });
+  }
+
   return app;
 }

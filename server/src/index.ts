@@ -11,7 +11,7 @@ const app = createApp(db);
 const httpServer = createServer(app);
 createSocketServer(httpServer, db);
 const port = Number(process.env.PORT || 3001);
-httpServer.listen(port, () => console.log(`GAME ON server listening on http://localhost:${port}`));
+httpServer.listen(port, '0.0.0.0', () => console.log(`GAME ON server listening on http://localhost:${port}`));
 let shuttingDown = false;
 const shutdown = () => {
   if (shuttingDown) return;

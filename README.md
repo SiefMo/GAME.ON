@@ -159,3 +159,12 @@ This execution environment does not currently complete npm registry requests, so
 
 ## GitHub Pages
 The included `pages.yml` deploys the React frontend only. The multiplayer API/Socket.IO server must be deployed separately on a Node-capable host and supplied to the frontend through `VITE_API_URL`.
+
+
+### CI/Pages note
+The GitHub Pages workflow uses `npm install` because this repository intentionally does not commit a package-lock file; the CI workflow performs the same clean dependency installation on GitHub runners.
+
+
+## Production architecture
+
+GAME ON is a full-stack multiplayer game. GitHub is the source repository; the live game runs the React client, Express API, Socket.IO server and persistent SQLite database together in the included Docker image. GitHub Pages is intentionally not used for the production game server.

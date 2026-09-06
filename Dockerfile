@@ -20,6 +20,7 @@ COPY --from=build /app/server/package.json ./server/package.json
 COPY --from=build /app/shared/package.json ./shared/package.json
 COPY --from=build /app/server/dist ./server/dist
 COPY --from=build /app/shared/dist ./shared/dist
+COPY --from=build /app/client/dist ./client/dist
 COPY --from=build /app/config ./config
 COPY --from=build /app/migrations ./migrations
 COPY --from=build /app/assets ./assets

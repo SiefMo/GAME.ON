@@ -116,6 +116,17 @@ describe('penalty and goalkeeper', () => {
     e.dispatch({ type: 'guessTeam', playerId: 'p2', teamId: 'portugal' });
     expect(s.penalty).toBeUndefined(); expect(s.currentTeamId).toBe('portugal');
   });
+  it('declining the goalkeeper save still requires the attacker team choice, then draws 1', () => {
+    const penalty = c('penalty'); const gk = c('number', { number: 1, teamId: 'argentina', playerId: 'argentina-1' });
+    const s = stateWith([{ hand: [penalty] }, { goalkeeperCard: gk }], [c('number', { number: 9, teamId: 'france' })]);
+    const e = new GameEngine(s, opts());
+    e.dispatch({ type: 'playCard', playerId: 'p1', cardId: penalty.id });
+    e.dispatch({ type: 'attemptSave', playerId: 'p2', accept: false });
+    expect(s.penalty?.phase).toBe('attacker-choosing');
+    e.dispatch({ type: 'chooseTeam', playerId: 'p1', teamId: 'portugal' });
+    expect(s.penalty).toBeUndefined(); expect(s.players[1].hand).toHaveLength(1); expect(s.currentTeamId).toBe('portugal');
+  });
+
   it('wrong guess draws 1 and applies attacker Team', () => {
     const penalty = c('penalty'); const gk = c('number', { number: 1, teamId: 'argentina', playerId: 'argentina-1' });
     const s = stateWith([{ hand: [penalty] }, { goalkeeperCard: gk }], [c('number', { number: 9, teamId: 'france' })]);

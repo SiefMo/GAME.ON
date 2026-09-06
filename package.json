@@ -17,7 +17,8 @@
     "e2e:ui": "playwright test --ui",
     "qa:static": "node scripts/qa-static.mjs",
     "verify": "npm run qa:static && npm run typecheck && npm test && npm run build",
-    "check:json": "node -e \"const fs=require('fs'); for(const f of ['config/game.json','config/teams.json','config/players.json']) JSON.parse(fs.readFileSync(f,'utf8')); console.log('JSON OK')\""
+    "check:json": "node -e \"const fs=require('fs'); for(const f of ['config/game.json','config/teams.json','config/players.json']) JSON.parse(fs.readFileSync(f,'utf8')); console.log('JSON OK')\"",
+    "start": "npm run start -w server"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

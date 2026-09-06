@@ -190,7 +190,8 @@ function restorePersistedRuntimes(db: Database.Database) {
 
 export function createSocketServer(httpServer: HttpServer, db: Database.Database) {
   dbRef = db;
-  const io = new Server(httpServer, { cors: { origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173', credentials: true }, transports: ['websocket', 'polling'] });
+  const socketOrigin = process.env.CLIENT_ORIGIN || (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5173');
+  const io = new Server(httpServer, { ...(socketOrigin ? { cors: { origin: socketOrigin, credentials: true } } : {}), transports: ['websocket', 'polling'] });
   ioRef = io;
   restorePersistedRuntimes(db);
 

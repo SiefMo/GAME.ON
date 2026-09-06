@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: game-on
+    runtime: docker
+    plan: 1c-2g
+    branch: master
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    numInstances: 1
+    disk:
+      name: game-on-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: /app/data/game-on.db
+      - key: ADMIN_BOOTSTRAP_USERNAME
+        sync: false

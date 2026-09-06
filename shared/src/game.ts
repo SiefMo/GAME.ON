@@ -22,6 +22,7 @@ export interface PenaltyState {
   defenderId: string;
   attackerTeamId?: TeamId;
   phase: 'defender-decision' | 'attacker-choosing' | 'defender-guessing';
+  saveDeclined?: boolean;
   deadlineAt?: number;
   chosenTeamId?: TeamId;
 }
@@ -399,7 +400,15 @@ export class GameEngine {
       assert(penalty.attackerId === playerId, 'Only penalty attacker can choose');
       penalty.chosenTeamId = teamId;
       const defender = this.player(penalty.defenderId);
-      if (defender.goalkeeperCard) {
+      if (penalty.saveDeclined) {
+        this.state.currentTeamId = teamId;
+        this.state.currentNumber = undefined;
+        this.drawOne(defender);
+        this.state.penalty = undefined;
+        this.event('penalty:declined', playerId, { teamId, defenderId: defender.id });
+        this.advanceTurn();
+        this.maybeFinishAfterEffect(playerId);
+      } else if (defender.goalkeeperCard) {
         penalty.phase = 'defender-guessing';
         penalty.deadlineAt = this.now() + this.config.penaltyGuessSeconds * 1000;
         this.event('penalty:teamChosen', playerId, { hidden: true });
@@ -421,8 +430,11 @@ export class GameEngine {
     assert(penalty, 'No penalty pending');
     assert(penalty.defenderId === playerId, 'Only defender can respond');
     assert(penalty.phase === 'defender-decision', 'Save decision is no longer available');
-    if (!accept) this.resolvePenaltyFailure('declined');
-    else {
+    if (!accept) {
+      this.event('penalty:saveDeclined', playerId);
+      penalty.saveDeclined = true;
+      penalty.phase = 'attacker-choosing';
+    } else {
       this.event('penalty:saveAccepted', playerId);
       penalty.phase = 'attacker-choosing';
     }

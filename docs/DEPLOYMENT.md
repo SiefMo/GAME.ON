@@ -1,65 +1,43 @@
-# GAME ON — Deployment Guide
+# GAME ON — Production Deployment
 
-## Recommended production shape
+GAME ON is a full-stack multiplayer application. GitHub stores the source code; the live game needs a Node/Socket.IO server and persistent SQLite storage.
 
-- Frontend: any static host that supports Vite output.
-- Backend: a Node 22 service/container running `server/dist/index.js`.
-- Database: SQLite on a persistent volume. The schema is migration-based and can later move to PostgreSQL behind the server persistence layer.
-- HTTPS: terminate TLS at the hosting provider/reverse proxy.
+## Recommended one-service production shape
 
-## Local production check
+The included Docker image builds the React client and serves it from the Express server. This keeps the browser, HTTP API and Socket.IO endpoint on one origin, so no separate frontend URL is required.
+
+### Local
 
 ```bash
 npm install
-npm run qa:static
-npm run typecheck
-npm test
-npm run build
+npm run verify
+npm run dev
 ```
 
-Then create a production `.env` from `.env.example`, set `NODE_ENV=production`, and point `CLIENT_ORIGIN` at the deployed frontend origin.
+Open `http://localhost:5173`. The Vite dev server proxies `/api` and `/socket.io` to the server.
 
-## Docker
+### Render
 
-```bash
-docker compose up --build -d
-docker compose ps
-docker compose logs -f game-on
-```
+The repository includes `render.yaml`. Render can create the Docker web service from the repository. The service uses `/app/data` for SQLite persistence and `/health` for health checks. Render web services support WebSockets and persistent disks; persistent disks are available on paid web services. If using the free plan, use this only as a temporary/demo deployment and expect database persistence limitations.
 
-The database is stored in the named `game_on_data` volume. Back it up before upgrades or destructive maintenance.
+Set these environment variables in the Render service:
 
-## Frontend deployment
+- `NODE_ENV=production`
+- `DATABASE_URL=/app/data/game-on.db`
+- `CLIENT_ORIGIN=https://YOUR-SERVICE.onrender.com`
+- `ADMIN_BOOTSTRAP_USERNAME=` (optional, then remove it after promoting the intended account)
 
-Build the client with the production API URL:
+### Important
 
-```bash
-VITE_API_URL=https://api.example.com npm run build -w client
-```
+Do not deploy the backend to GitHub Pages. GitHub Pages is static hosting and cannot run Express/Socket.IO or SQLite.
 
-Publish `client/dist` on the static host. The browser must be able to reach the API and Socket.IO endpoint over HTTPS/WSS.
+## Production checks
 
-## GitHub
+The GitHub CI workflow runs:
 
-1. Create an empty repository.
-2. Copy this project into it.
-3. Keep `.env`, database files, `node_modules`, and build output untracked.
-4. Push the default branch.
-5. Enable the included CI workflows.
-6. Configure repository secrets/environment variables only in the deployment system; never commit them.
+- static QA
+- TypeScript typecheck
+- unit tests
+- production builds
 
-## Pre-launch checklist
-
-- [ ] `npm install` succeeds from a clean checkout.
-- [ ] `npm run qa:static` passes.
-- [ ] `npm run typecheck` passes.
-- [ ] `npm test` passes.
-- [ ] `npm run build` passes.
-- [ ] `npm run e2e` passes with Chromium installed.
-- [ ] `NODE_ENV=production` is set.
-- [ ] `CLIENT_ORIGIN` is exact and HTTPS.
-- [ ] Database volume is persistent and backed up.
-- [ ] Health endpoint `/health` is monitored.
-- [ ] Admin bootstrap is used only for controlled initialization, then the environment variable is removed.
-- [ ] Real player/team artwork is added only when licensing permits it.
-- [ ] Privacy, Terms, and Account Deletion pages are reviewed before public launch.
+The E2E workflow runs Playwright against the server and Vite client.
