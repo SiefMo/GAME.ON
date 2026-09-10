@@ -1,0 +1,10 @@
+name: GitHub Pages (disabled for full-stack game)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  disabled:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GAME ON is a full-stack multiplayer app. Production deployment uses the Docker service, not GitHub Pages."
